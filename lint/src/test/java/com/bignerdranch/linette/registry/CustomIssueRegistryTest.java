@@ -2,6 +2,7 @@ package com.bignerdranch.linette.registry;
 
 import com.android.tools.lint.detector.api.Issue;
 import com.bignerdranch.linette.detectors.EnumDetector;
+import com.bignerdranch.linette.detectors.LayoutIdPrefixDetector;
 import com.bignerdranch.linette.detectors.MinSdkDetector;
 import com.bignerdranch.linette.detectors.TodoDetector;
 
@@ -34,7 +35,7 @@ public class CustomIssueRegistryTest {
     @Test
     public void testNumberOfIssues() throws Exception {
         int size = mCustomIssueRegistry.getIssues().size();
-        assertThat(size).isEqualTo(3);
+        assertThat(size).isEqualTo(4);
     }
 
     /**
@@ -46,6 +47,7 @@ public class CustomIssueRegistryTest {
         assertThat(actual).contains(EnumDetector.ISSUE);
         assertThat(actual).contains(MinSdkDetector.ISSUE);
         assertThat(actual).contains(TodoDetector.ISSUE);
+        assertThat(actual).contains(LayoutIdPrefixDetector.ISSUE);
     }
 
 }
