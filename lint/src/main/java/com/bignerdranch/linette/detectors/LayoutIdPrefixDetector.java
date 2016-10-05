@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.EnumSet;
 
 /**
- * Created by kyle.roe on 06/09/16.
+ * Lint check for layout id prefixes.
  */
 public class LayoutIdPrefixDetector extends LayoutDetector {
 
@@ -25,8 +25,12 @@ public class LayoutIdPrefixDetector extends LayoutDetector {
     private static final String EDIT = "edit";
     private static final String IMAGE = "image";
     private static final String BUTTON = "button";
-    private static final String TAB_LAYOUT = "tab_layout";
     private static final String SEEK_BAR = "seek_bar";
+    private static final String FLOATING_ACTION_BUTTON = "fab";
+
+    private static final String PAGER = "pager";
+    private static final String CHECK_BOX = "check";
+    private static final String SPINNER = "spinner";
 
     private static final Class<? extends LayoutDetector> DETECTOR_CLASS = LayoutIdPrefixDetector.class;
     private static final EnumSet<Scope> DETECTOR_SCOPE = Scope.RESOURCE_FILE_SCOPE;
@@ -41,7 +45,7 @@ public class LayoutIdPrefixDetector extends LayoutDetector {
     private static final String ISSUE_EXPLANATION = "Layout resource ids should be prefixed with";
     private static final Category ISSUE_CATEGORY = Category.TYPOGRAPHY;
     private static final int ISSUE_PRIORITY = 8;
-    private static final Severity ISSUE_SEVERITY = Severity.WARNING;
+    private static final Severity ISSUE_SEVERITY = Severity.ERROR;
 
     public static final Issue ISSUE = Issue.create(
             ISSUE_ID,
@@ -95,10 +99,14 @@ public class LayoutIdPrefixDetector extends LayoutDetector {
                     specification = BUTTON;
                 } else if (prefix.startsWith("SeekBar") && !value.startsWith(SEEK_BAR)) {
                     specification = SEEK_BAR;
-                } else if (prefix.contains("TabLayout") && !value.startsWith(LAYOUT)) {
-                    specification = LAYOUT;
-                } else if (prefix.contains("SwipeRefreshLayout") && !value.startsWith(LAYOUT)) {
-                    specification = LAYOUT;
+                } else if (prefix.contains("Pager") && !value.startsWith(PAGER)) {
+                    specification = PAGER;
+                } else if (prefix.contains("FloatingActionButton") && !value.startsWith(FLOATING_ACTION_BUTTON)) {
+                    specification = FLOATING_ACTION_BUTTON;
+                } else if (prefix.contains("CheckBox") && !value.startsWith(CHECK_BOX)) {
+                    specification = CHECK_BOX;
+                } else if (prefix.contains("Spinner") && !value.startsWith(SPINNER)) {
+                    specification = SPINNER;
                 } else {
                     return;
                 }
@@ -106,7 +114,7 @@ public class LayoutIdPrefixDetector extends LayoutDetector {
                 context.report(ISSUE,
                         attribute,
                         context.getLocation(attribute),
-                        ISSUE_DESCRIPTION + " " + specification + " " + prefix + " " + value );
+                        ISSUE_DESCRIPTION + " " + specification + " " + prefix + " " + value);
             }
         }
     }
