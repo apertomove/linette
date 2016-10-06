@@ -27,7 +27,6 @@ public class LayoutIdPrefixDetector extends LayoutDetector {
     private static final String BUTTON = "button";
     private static final String SEEK_BAR = "seek_bar";
     private static final String FLOATING_ACTION_BUTTON = "fab";
-
     private static final String PAGER = "pager";
     private static final String CHECK_BOX = "check";
     private static final String SPINNER = "spinner";
@@ -114,7 +113,7 @@ public class LayoutIdPrefixDetector extends LayoutDetector {
                 context.report(ISSUE,
                         attribute,
                         context.getLocation(attribute),
-                        ISSUE_DESCRIPTION + " " + specification + " " + prefix + " " + value);
+                        ISSUE_DESCRIPTION + " " + specification);
             }
         }
     }
