@@ -1,6 +1,7 @@
 package com.bignerdranch.linette.registry;
 
 import com.android.tools.lint.detector.api.Issue;
+import com.bignerdranch.linette.detectors.DrawablePrefixDetector;
 import com.bignerdranch.linette.detectors.EnumDetector;
 import com.bignerdranch.linette.detectors.LayoutIdPrefixDetector;
 import com.bignerdranch.linette.detectors.MenuIdPrefixDetector;
@@ -38,7 +39,7 @@ public class CustomIssueRegistryTest {
     @Test
     public void testNumberOfIssues() throws Exception {
         int size = mCustomIssueRegistry.getIssues().size();
-        assertThat(size).isEqualTo(7);
+        assertThat(size).isEqualTo(8);
     }
 
     /**
@@ -54,6 +55,7 @@ public class CustomIssueRegistryTest {
         assertThat(actual).contains(MenuNameDetector.ISSUE);
         assertThat(actual).contains(MenuPrefixDetector.ISSUE);
         assertThat(actual).contains(MenuIdPrefixDetector.ISSUE);
+        assertThat(actual).contains(DrawablePrefixDetector.ISSUE);
     }
 
 }

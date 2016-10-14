@@ -2,6 +2,7 @@ package com.bignerdranch.linette.registry;
 
 import com.android.tools.lint.client.api.IssueRegistry;
 import com.android.tools.lint.detector.api.Issue;
+import com.bignerdranch.linette.detectors.DrawablePrefixDetector;
 import com.bignerdranch.linette.detectors.EnumDetector;
 import com.bignerdranch.linette.detectors.LayoutIdPrefixDetector;
 import com.bignerdranch.linette.detectors.MenuIdPrefixDetector;
@@ -26,7 +27,8 @@ public class CustomIssueRegistry extends IssueRegistry {
             LayoutIdPrefixDetector.ISSUE,
             MenuNameDetector.ISSUE,
             MenuPrefixDetector.ISSUE,
-            MenuIdPrefixDetector.ISSUE
+            MenuIdPrefixDetector.ISSUE,
+            DrawablePrefixDetector.ISSUE
     );
 
     public CustomIssueRegistry() {
