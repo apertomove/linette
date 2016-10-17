@@ -8,6 +8,7 @@ import com.bignerdranch.linette.detectors.MenuIdPrefixDetector;
 import com.bignerdranch.linette.detectors.MenuNameDetector;
 import com.bignerdranch.linette.detectors.MenuPrefixDetector;
 import com.bignerdranch.linette.detectors.MinSdkDetector;
+import com.bignerdranch.linette.detectors.ResourcePluralNameDetector;
 import com.bignerdranch.linette.detectors.TodoDetector;
 
 import org.junit.Before;
@@ -39,7 +40,7 @@ public class CustomIssueRegistryTest {
     @Test
     public void testNumberOfIssues() throws Exception {
         int size = mCustomIssueRegistry.getIssues().size();
-        assertThat(size).isEqualTo(8);
+        assertThat(size).isEqualTo(9);
     }
 
     /**
@@ -56,6 +57,7 @@ public class CustomIssueRegistryTest {
         assertThat(actual).contains(MenuPrefixDetector.ISSUE);
         assertThat(actual).contains(MenuIdPrefixDetector.ISSUE);
         assertThat(actual).contains(DrawablePrefixDetector.ISSUE);
+        assertThat(actual).contains(ResourcePluralNameDetector.ISSUE);
     }
 
 }

@@ -9,6 +9,7 @@ import com.bignerdranch.linette.detectors.MenuIdPrefixDetector;
 import com.bignerdranch.linette.detectors.MenuNameDetector;
 import com.bignerdranch.linette.detectors.MenuPrefixDetector;
 import com.bignerdranch.linette.detectors.MinSdkDetector;
+import com.bignerdranch.linette.detectors.ResourcePluralNameDetector;
 import com.bignerdranch.linette.detectors.TodoDetector;
 
 import java.util.Arrays;
@@ -28,7 +29,8 @@ public class CustomIssueRegistry extends IssueRegistry {
             MenuNameDetector.ISSUE,
             MenuPrefixDetector.ISSUE,
             MenuIdPrefixDetector.ISSUE,
-            DrawablePrefixDetector.ISSUE
+            DrawablePrefixDetector.ISSUE,
+            ResourcePluralNameDetector.ISSUE
     );
 
     public CustomIssueRegistry() {
