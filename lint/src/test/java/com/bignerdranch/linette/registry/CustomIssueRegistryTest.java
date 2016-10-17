@@ -10,6 +10,7 @@ import com.bignerdranch.linette.detectors.MenuNameDetector;
 import com.bignerdranch.linette.detectors.MenuPrefixDetector;
 import com.bignerdranch.linette.detectors.MinSdkDetector;
 import com.bignerdranch.linette.detectors.ResourceValuesNameDetector;
+import com.bignerdranch.linette.detectors.ShapeSuffixDetector;
 import com.bignerdranch.linette.detectors.TodoDetector;
 
 import org.junit.Before;
@@ -19,6 +20,7 @@ import java.util.List;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Test the {@link CustomIssueRegistry}
@@ -41,7 +43,7 @@ public class CustomIssueRegistryTest {
     @Test
     public void testNumberOfIssues() throws Exception {
         int size = mCustomIssueRegistry.getIssues().size();
-        assertThat(size).isEqualTo(10);
+        assertThat(size).isEqualTo(11);
     }
 
     /**
@@ -60,6 +62,8 @@ public class CustomIssueRegistryTest {
         assertThat(actual).contains(DrawablePrefixDetector.ISSUE);
         assertThat(actual).contains(ResourceValuesNameDetector.ISSUE);
         assertThat(actual).contains(LayoutPrefixDetector.ISSUE);
+        assertThat(actual).contains(ShapeSuffixDetector.ISSUE);
+
     }
 
 }

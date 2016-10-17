@@ -80,7 +80,6 @@ public class LayoutPrefixDetector extends ResourceXmlDetector {
 
         if (document != null) {
 
-
             if (!isCorrectName(fileName)) {
                 context.report(ISSUE,
                         document,
@@ -93,7 +92,6 @@ public class LayoutPrefixDetector extends ResourceXmlDetector {
     }
 
     private boolean isCorrectName(String name) {
-
         return name.startsWith(ACTIVITY) || name.startsWith(FRAGMENT)
                 || name.startsWith(DIALOG) || name.startsWith(ITEM)
                 || name.startsWith(PARTIAL);
