@@ -19,6 +19,7 @@ import java.util.List;
 
 import static com.android.SdkConstants.DOT_JPEG;
 import static com.android.SdkConstants.DOT_JPG;
+import static com.android.SdkConstants.DOT_XML;
 import static com.android.SdkConstants.DRAWABLE_FOLDER;
 import static com.android.SdkConstants.DOT_PNG;
 import static com.android.tools.lint.detector.api.LintUtils.endsWith;
@@ -114,8 +115,8 @@ public class DrawablePrefixDetector extends ResourceXmlDetector implements Detec
     }
 
     private boolean isDrawableFile(String name) {
-        return endsWith(name, DOT_PNG) || endsWith(name, DOT_JPG)
-                || endsWith(name, DOT_JPEG);
+        return endsWith(name, DOT_PNG) || endsWith(name, DOT_JPG) ||
+                endsWith(name, DOT_JPEG);
     }
 
     private boolean isCorrectName(String name) {

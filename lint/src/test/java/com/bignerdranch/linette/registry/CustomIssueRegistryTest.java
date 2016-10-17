@@ -20,7 +20,6 @@ import java.util.List;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Test the {@link CustomIssueRegistry}
