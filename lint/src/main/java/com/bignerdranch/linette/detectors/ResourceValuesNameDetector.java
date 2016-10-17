@@ -21,7 +21,7 @@ import java.util.List;
  * Lint check for naming convetion in values folder.
  */
 
-public class ResourcePluralNameDetector extends ResourceXmlDetector implements Detector.JavaScanner {
+public class ResourceValuesNameDetector extends ResourceXmlDetector implements Detector.JavaScanner {
 
     private static final String STRINGS = "strings.";
     private static final String STYLES = "styles.";
@@ -30,7 +30,7 @@ public class ResourcePluralNameDetector extends ResourceXmlDetector implements D
     private static final String ATTRS = "attrs.";
     private static final String CRASHLYTICS = "com_crashlytics_build_id.xml";
 
-    private static final Class<? extends Detector> DETECTOR_CLASS = ResourcePluralNameDetector.class;
+    private static final Class<? extends Detector> DETECTOR_CLASS = ResourceValuesNameDetector.class;
     private static final EnumSet<Scope> DETECTOR_SCOPE = Scope.ALL_RESOURCES_SCOPE;
 
     private static final Implementation IMPLEMENTATION = new Implementation(
@@ -38,8 +38,8 @@ public class ResourcePluralNameDetector extends ResourceXmlDetector implements D
             DETECTOR_SCOPE
     );
 
-    private static final String ISSUE_ID = "ResourcePluralName";
-    private static final String ISSUE_DESCRIPTION = "Resource files in values folder should be plural";
+    private static final String ISSUE_ID = "ResourceValuesName";
+    private static final String ISSUE_DESCRIPTION = "Resource files in the values folder should be plural";
     private static final String ISSUE_EXPLANATION = "string.xml should be strings.xml, style.xml should be styles.xml, color.xml should be colors.xml, dime.xml should be dimens.xml, attr.xml should be attrs.xml";
     private static final Category ISSUE_CATEGORY = Category.TYPOGRAPHY;
     private static final int ISSUE_PRIORITY = 8;
@@ -56,9 +56,9 @@ public class ResourcePluralNameDetector extends ResourceXmlDetector implements D
     );
 
     /**
-     * Constructs a new {@link ResourcePluralNameDetector} check
+     * Constructs a new {@link ResourceValuesNameDetector} check
      */
-    public ResourcePluralNameDetector() {
+    public ResourceValuesNameDetector() {
     }
 
     @Override

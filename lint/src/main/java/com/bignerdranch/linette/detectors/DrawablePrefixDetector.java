@@ -97,7 +97,7 @@ public class DrawablePrefixDetector extends ResourceXmlDetector implements Detec
                             for (File f : files) {
                                 String name = f.getName();
                                 if (isDrawableFile(name)) {
-                                    if (!isNameCorrect(name)) {
+                                    if (!isCorrectName(name)) {
 
                                         context.report(ISSUE,
                                                 Location.create(f),
@@ -113,12 +113,12 @@ public class DrawablePrefixDetector extends ResourceXmlDetector implements Detec
         }
     }
 
-    private static boolean isDrawableFile(String name) {
+    private boolean isDrawableFile(String name) {
         return endsWith(name, DOT_PNG) || endsWith(name, DOT_JPG)
                 || endsWith(name, DOT_JPEG);
     }
 
-    private static boolean isNameCorrect(String name) {
+    private boolean isCorrectName(String name) {
 
         return name.startsWith(ACTION_BAR) || name.startsWith(BUTTON)
                 || name.startsWith(DIALOG) || name.startsWith(DIVIDER)

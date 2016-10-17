@@ -5,11 +5,12 @@ import com.android.tools.lint.detector.api.Issue;
 import com.bignerdranch.linette.detectors.DrawablePrefixDetector;
 import com.bignerdranch.linette.detectors.EnumDetector;
 import com.bignerdranch.linette.detectors.LayoutIdPrefixDetector;
+import com.bignerdranch.linette.detectors.LayoutPrefixDetector;
 import com.bignerdranch.linette.detectors.MenuIdPrefixDetector;
 import com.bignerdranch.linette.detectors.MenuNameDetector;
 import com.bignerdranch.linette.detectors.MenuPrefixDetector;
 import com.bignerdranch.linette.detectors.MinSdkDetector;
-import com.bignerdranch.linette.detectors.ResourcePluralNameDetector;
+import com.bignerdranch.linette.detectors.ResourceValuesNameDetector;
 import com.bignerdranch.linette.detectors.TodoDetector;
 
 import java.util.Arrays;
@@ -30,7 +31,8 @@ public class CustomIssueRegistry extends IssueRegistry {
             MenuPrefixDetector.ISSUE,
             MenuIdPrefixDetector.ISSUE,
             DrawablePrefixDetector.ISSUE,
-            ResourcePluralNameDetector.ISSUE
+            ResourceValuesNameDetector.ISSUE,
+            LayoutPrefixDetector.ISSUE
     );
 
     public CustomIssueRegistry() {
