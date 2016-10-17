@@ -1,7 +1,6 @@
 package com.bignerdranch.linette.detectors;
 
 import com.android.annotations.NonNull;
-import com.android.resources.ResourceFolderType;
 import com.android.tools.lint.detector.api.Category;
 import com.android.tools.lint.detector.api.Context;
 import com.android.tools.lint.detector.api.Detector;
@@ -13,13 +12,13 @@ import com.android.tools.lint.detector.api.ResourceXmlDetector;
 import com.android.tools.lint.detector.api.Scope;
 import com.android.tools.lint.detector.api.Severity;
 
+
 import java.io.File;
 import java.util.EnumSet;
 import java.util.List;
 
 import static com.android.SdkConstants.DOT_JPEG;
 import static com.android.SdkConstants.DOT_JPG;
-import static com.android.SdkConstants.DOT_XML;
 import static com.android.SdkConstants.DRAWABLE_FOLDER;
 import static com.android.SdkConstants.DOT_PNG;
 import static com.android.tools.lint.detector.api.LintUtils.endsWith;
@@ -30,17 +29,17 @@ import static com.android.tools.lint.detector.api.LintUtils.endsWith;
 
 public class DrawablePrefixDetector extends ResourceXmlDetector implements Detector.JavaScanner {
 
-    private static final String ACTION_BAR = "ab";
-    private static final String BUTTON = "btn";
-    private static final String DIALOG = "dialog";
-    private static final String DIVIDER = "divider";
-    private static final String ICON = "ic";
-    private static final String MENU = "menu";
-    private static final String NOTIFICATION = "notification";
-    private static final String TABS = "tab";
+    private static final String ACTION_BAR = "ab_";
+    private static final String BUTTON = "btn_";
+    private static final String DIALOG = "dialog_";
+    private static final String DIVIDER = "divider_";
+    private static final String ICON = "ic_";
+    private static final String MENU = "menu_";
+    private static final String NOTIFICATION = "notification_";
+    private static final String TABS = "tab_";
 
-    private static final Class<? extends ResourceXmlDetector> DETECTOR_CLASS = DrawablePrefixDetector.class;
-    private static final EnumSet<Scope> DETECTOR_SCOPE = Scope.OTHER_SCOPE;
+    private static final Class<? extends Detector> DETECTOR_CLASS = DrawablePrefixDetector.class;
+    private static final EnumSet<Scope> DETECTOR_SCOPE = Scope.ALL_RESOURCES_SCOPE;
 
     private static final Implementation IMPLEMENTATION = new Implementation(
             DETECTOR_CLASS,
@@ -71,68 +70,70 @@ public class DrawablePrefixDetector extends ResourceXmlDetector implements Detec
     }
 
     @Override
-    public boolean appliesTo(@NonNull ResourceFolderType folderType) {
-        return folderType == ResourceFolderType.MENU;
+    public void afterCheckLibraryProject(@NonNull Context context) {
+        if (!context.getProject().getReportIssues()) {
+            // If this is a library project not being analyzed, ignore it
+            return;
+        }
+        checkResourceFolder(context, context.getProject());
     }
 
     @Override
     public void afterCheckProject(@NonNull Context context) {
-        // super.afterCheckProject(context);
-
         checkResourceFolder(context, context.getProject());
     }
 
-
     private void checkResourceFolder(Context context, @NonNull Project project) {
-
-        File[] folders = new File[]{};
-        File[] files = new File[]{};
-
         List<File> resourceFolders = project.getResourceFolders();
         for (File res : resourceFolders) {
-            folders = res.listFiles();
-        }
-        for (File folder : folders) {
-            String folderName = folder.getName();
-            if (folderName.startsWith(DRAWABLE_FOLDER)) {
-                files = folder.listFiles();
-            }
-            checkDrawableDir(context, files);
+            File[] folders = res.listFiles();
+            if (folders != null) {
 
-        }
+                for (File folder : folders) {
+                    String folderName = folder.getName();
+                    if (folderName.startsWith(DRAWABLE_FOLDER)) {
+                        File[] files = folder.listFiles();
+                        if (files != null) {
+                            for (File f : files) {
+                                String name = f.getName();
+                                if (isDrawableFile(name)) {
+                                    if (!isNameCorrect(name)) {
 
-    }
+                                        context.report(ISSUE,
+                                                Location.create(f),
+                                                ISSUE_DESCRIPTION);
 
-    private void checkDrawableDir(Context context, File[] files) {
-
-        if (files != null) {
-            for (File file : files) {
-                String name = file.getName();
-                //noinspection StatementWithEmptyBody
-                if (name.endsWith(DOT_XML)) {
-                    // pass - most common case, avoids checking other extensions
-                } else if (endsWith(name, DOT_PNG)
-                        || endsWith(name, DOT_JPG)
-                        || endsWith(name, DOT_JPEG)) {
-
-                    if (!(name.startsWith(ACTION_BAR)) || !(name.startsWith(BUTTON))
-                            || !(name.startsWith(DIALOG))
-                            || !(name.startsWith(DIVIDER))
-                            || !(name.startsWith(ICON))
-                            || !(name.startsWith(MENU))
-                            || !(name.startsWith(NOTIFICATION))
-                            || !(name.startsWith(TABS))) {
-
-                        context.report(ISSUE,
-                                Location.create(file),
-                                ISSUE_DESCRIPTION);
-
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
+
+    private static boolean isDrawableFile(String name) {
+        return endsWith(name, DOT_PNG) || endsWith(name, DOT_JPG)
+                || endsWith(name, DOT_JPEG);
+    }
+
+    private static boolean isNameCorrect(String name) {
+
+        return name.startsWith(ACTION_BAR) || name.startsWith(BUTTON)
+                || name.startsWith(DIALOG) || name.startsWith(DIVIDER)
+                || name.startsWith(ICON) || name.startsWith(MENU)
+                || name.startsWith(NOTIFICATION) || name.startsWith(TABS);
+    }
+
 }
+
+
+
+
+
+
+
 
 
 
