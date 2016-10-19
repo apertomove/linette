@@ -59,9 +59,9 @@ public class CustomIssueRegistryTest {
         assertThat(actual).contains(MenuPrefixDetector.ISSUE);
         assertThat(actual).contains(MenuIdPrefixDetector.ISSUE);
         assertThat(actual).contains(DrawablePrefixDetector.ISSUE);
-        assertThat(actual).contains(ResourceValuesNameDetector.ISSUE);
         assertThat(actual).contains(LayoutPrefixDetector.ISSUE);
         assertThat(actual).contains(ShapeSuffixDetector.ISSUE);
+        assertThat(actual).contains(ResourceValuesNameDetector.ISSUE);
 
     }
 

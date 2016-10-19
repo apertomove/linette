@@ -32,9 +32,9 @@ public class CustomIssueRegistry extends IssueRegistry {
             MenuPrefixDetector.ISSUE,
             MenuIdPrefixDetector.ISSUE,
             DrawablePrefixDetector.ISSUE,
-            ResourceValuesNameDetector.ISSUE,
             LayoutPrefixDetector.ISSUE,
-            ShapeSuffixDetector.ISSUE
+            ShapeSuffixDetector.ISSUE,
+            ResourceValuesNameDetector.ISSUE
 
     );
 
