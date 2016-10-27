@@ -37,6 +37,10 @@ public class ShapeSuffixDetector extends ResourceXmlDetector implements Detector
     private static final String DISABLED = "_disabled.xml";
     private static final String SELECTED = "_selected.xml";
 
+    private static final String CIRCLE = "circle.xml";
+    private static final String RECTANGLE = "rectangle.xml";
+    private static final String CORNERS = "corners.xml";
+
 
     private static final Class<? extends Detector> DETECTOR_CLASS = ShapeSuffixDetector.class;
     private static final EnumSet<Scope> DETECTOR_SCOPE = Scope.ALL_RESOURCES_SCOPE;
@@ -48,7 +52,7 @@ public class ShapeSuffixDetector extends ResourceXmlDetector implements Detector
 
     private static final String ISSUE_ID = "ShapeSuffix";
     private static final String ISSUE_DESCRIPTION = "Incorrect or missing naming of shape resource suffix";
-    private static final String ISSUE_EXPLANATION = "Shapes should have one of the folliwng suffixes, depending on their state: normal, pressed, focused, disabled, selected";
+    private static final String ISSUE_EXPLANATION = "Shapes should be suffixed with there shape: circle, rectangle, corners, or their state: normal, pressed, focused, disabled, selected";
     private static final Category ISSUE_CATEGORY = Category.TYPOGRAPHY;
     private static final int ISSUE_PRIORITY = 8;
     private static final Severity ISSUE_SEVERITY = Severity.ERROR;
@@ -97,8 +101,8 @@ public class ShapeSuffixDetector extends ResourceXmlDetector implements Detector
                             for (File f : files) {
                                 String name = f.getName();
                                 if (isShapeFile(name)) {
-                                       if(!hasState(name)) {
-                                  //  if (name.endsWith("pressed.xml")) {
+                                    if (!hasState(name)) {
+                                        //  if (name.endsWith("pressed.xml")) {
                                         context.report(ISSUE,
                                                 Location.create(f),
                                                 ISSUE_DESCRIPTION);
@@ -121,7 +125,10 @@ public class ShapeSuffixDetector extends ResourceXmlDetector implements Detector
                 || name.endsWith(PRESSED)
                 || name.endsWith(FOCUSED)
                 || name.endsWith(DISABLED)
-                || name.endsWith(SELECTED);
+                || name.endsWith(SELECTED)
+                || name.endsWith(CIRCLE)
+                || name.endsWith(RECTANGLE)
+                || name.endsWith(CORNERS);
     }
 
 }
