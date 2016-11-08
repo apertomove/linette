@@ -36,6 +36,7 @@ public class ShapeSuffixDetector extends ResourceXmlDetector implements Detector
     private static final String FOCUSED = "_focused.xml";
     private static final String DISABLED = "_disabled.xml";
     private static final String SELECTED = "_selected.xml";
+    private static final String DESELECTED = "_deselected.xml";
 
     private static final String CIRCLE = "circle.xml";
     private static final String RECTANGLE = "rectangle.xml";
@@ -126,6 +127,7 @@ public class ShapeSuffixDetector extends ResourceXmlDetector implements Detector
                 || name.endsWith(FOCUSED)
                 || name.endsWith(DISABLED)
                 || name.endsWith(SELECTED)
+                || name.endsWith(DESELECTED)
                 || name.endsWith(CIRCLE)
                 || name.endsWith(RECTANGLE)
                 || name.endsWith(CORNERS);
