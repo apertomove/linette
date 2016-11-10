@@ -42,6 +42,8 @@ public class ShapeSuffixDetector extends ResourceXmlDetector implements Detector
     private static final String RECTANGLE = "rectangle.xml";
     private static final String CORNERS = "corners.xml";
 
+    private static final String GRADIENT = "gradient.xml";
+
 
     private static final Class<? extends Detector> DETECTOR_CLASS = ShapeSuffixDetector.class;
     private static final EnumSet<Scope> DETECTOR_SCOPE = Scope.ALL_RESOURCES_SCOPE;
@@ -130,7 +132,8 @@ public class ShapeSuffixDetector extends ResourceXmlDetector implements Detector
                 || name.endsWith(DESELECTED)
                 || name.endsWith(CIRCLE)
                 || name.endsWith(RECTANGLE)
-                || name.endsWith(CORNERS);
+                || name.endsWith(CORNERS)
+                || name.endsWith(GRADIENT);
     }
 
 }
