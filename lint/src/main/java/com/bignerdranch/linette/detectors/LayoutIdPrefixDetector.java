@@ -25,6 +25,7 @@ public class LayoutIdPrefixDetector extends LayoutDetector {
     private static final String EDIT = "edit";
     private static final String IMAGE = "image";
     private static final String BUTTON = "button";
+    private static final String BTN = "btn";
     private static final String SEEK_BAR = "seek_bar";
     private static final String FLOATING_ACTION_BUTTON = "fab";
     private static final String PAGER = "pager";
@@ -94,8 +95,9 @@ public class LayoutIdPrefixDetector extends LayoutDetector {
                     specification = EDIT;
                 } else if (prefix.startsWith("Image") && !value.startsWith(IMAGE)) {
                     specification = IMAGE;
+                //} else if ((prefix.startsWith("Button") && !value.startsWith(BUTTON)) || (prefix.startsWith("Button") && !value.startsWith(BTN))) {
                 } else if (prefix.startsWith("Button") && !value.startsWith(BUTTON)) {
-                    specification = BUTTON;
+                    specification = BUTTON + " / " + BTN;
                 } else if (prefix.startsWith("SeekBar") && !value.startsWith(SEEK_BAR)) {
                     specification = SEEK_BAR;
                 } else if (prefix.contains("Pager") && !value.startsWith(PAGER)) {

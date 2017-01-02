@@ -35,6 +35,7 @@ public class DrawablePrefixDetector extends ResourceXmlDetector implements Detec
     private static final String DIALOG = "dialog_";
     private static final String DIVIDER = "divider_";
     private static final String ICON = "ic_";
+    private static final String IMAGE = "img_";
     private static final String MENU = "menu_";
     private static final String NOTIFICATION = "notification_";
     private static final String TABS = "tab_";
@@ -121,10 +122,15 @@ public class DrawablePrefixDetector extends ResourceXmlDetector implements Detec
 
     private boolean isCorrectName(String name) {
 
-        return name.startsWith(ACTION_BAR) || name.startsWith(BUTTON)
-                || name.startsWith(DIALOG) || name.startsWith(DIVIDER)
-                || name.startsWith(ICON) || name.startsWith(MENU)
-                || name.startsWith(NOTIFICATION) || name.startsWith(TABS);
+        return name.startsWith(ACTION_BAR) ||
+                name.startsWith(BUTTON) ||
+                name.startsWith(DIALOG) ||
+                name.startsWith(DIVIDER) ||
+                name.startsWith(ICON) ||
+                name.startsWith(IMAGE) ||
+                name.startsWith(MENU) ||
+                name.startsWith(NOTIFICATION) ||
+                name.startsWith(TABS);
     }
 
 }
