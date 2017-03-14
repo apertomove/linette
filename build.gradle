@@ -23,12 +23,12 @@ dependencies {
 //    compile 'com.android.tools.lint:lint:25.2.0'
     compile 'com.android.tools.lint:lint-api:25.2.0'
     compile 'com.android.tools.lint:lint-checks:25.2.0'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.assertj:assertj-core:3.0.0'
-    testCompile 'org.mockito:mockito-core:1.9.5'
-    testCompile 'com.android.tools.lint:lint:25.2.0'
-    testCompile 'com.android.tools.lint:lint-tests:24.3.1'
-    testCompile 'com.android.tools:testutils:24.3.1'
+//    testCompile 'junit:junit:4.12'
+//    testCompile 'org.assertj:assertj-core:3.0.0'
+//    testCompile 'org.mockito:mockito-core:1.9.5'
+//    testCompile 'com.android.tools.lint:lint:25.2.0'
+//    testCompile 'com.android.tools.lint:lint-tests:24.3.1'
+//    testCompile 'com.android.tools:testutils:24.3.1'
 }
 
 jar {
@@ -58,9 +58,9 @@ configurations {
     lintChecks
 }
 
-dependencies {
-    lintChecks files(jar)
-}
+//dependencies {
+//    lintChecks files(jar)
+//}
 
 defaultTasks 'assemble'
 
