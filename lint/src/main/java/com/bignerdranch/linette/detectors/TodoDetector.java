@@ -1,6 +1,7 @@
 package com.bignerdranch.linette.detectors;
 
 import com.android.annotations.NonNull;
+import com.android.resources.ResourceFolderType;
 import com.android.tools.lint.detector.api.Category;
 import com.android.tools.lint.detector.api.Context;
 import com.android.tools.lint.detector.api.Detector;
@@ -11,6 +12,8 @@ import com.android.tools.lint.detector.api.Location;
 import com.android.tools.lint.detector.api.Scope;
 import com.android.tools.lint.detector.api.Severity;
 import com.android.tools.lint.detector.api.TextFormat;
+import com.intellij.psi.JavaElementVisitor;
+import com.intellij.psi.PsiElement;
 
 import java.io.File;
 import java.util.EnumSet;
@@ -22,7 +25,7 @@ import lombok.ast.Node;
 /**
  * Lint check for the usage of to-do statements
  */
-public class TodoDetector extends Detector implements Detector.JavaScanner {
+public class TodoDetector extends Detector implements Detector.JavaPsiScanner {
 
     private static final String TODO_MATCHER_STRING = "TODO";
 
@@ -58,17 +61,18 @@ public class TodoDetector extends Detector implements Detector.JavaScanner {
     }
 
     @Override
-    public boolean appliesTo(@NonNull Context context, @NonNull File file) {
+    public boolean appliesTo(ResourceFolderType folderType) {
         return true;
+        //return super.appliesTo(folderType);
     }
 
     @Override
-    public List<Class<? extends Node>> getApplicableNodeTypes() {
-        return null;
+    public List<Class<? extends PsiElement>> getApplicablePsiTypes() {
+        return super.getApplicablePsiTypes();
     }
 
     @Override
-    public AstVisitor createJavaVisitor(@NonNull JavaContext context) {
+    public JavaElementVisitor createPsiVisitor(JavaContext context) {
         String source = context.getContents();
 
         // Check validity of source
@@ -83,6 +87,6 @@ public class TodoDetector extends Detector implements Detector.JavaScanner {
             context.report(ISSUE, location, ISSUE.getBriefDescription(TextFormat.TEXT));
         }
         return null;
+        //return super.createPsiVisitor(context);
     }
-    
 }

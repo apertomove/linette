@@ -6,7 +6,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.google.gms:google-services:3.0.0'
     }
 }
 
@@ -20,7 +19,7 @@ allprojects {
 }
 
 dependencies {
-//    compile 'com.android.tools.lint:lint:25.2.0'
+    compile 'com.android.tools.lint:lint:25.2.0'
     compile 'com.android.tools.lint:lint-api:25.2.0'
     compile 'com.android.tools.lint:lint-checks:25.2.0'
 //    testCompile 'junit:junit:4.12'
@@ -58,11 +57,11 @@ configurations {
     lintChecks
 }
 
-//dependencies {
-//    lintChecks files(jar)
-//}
+dependencies {
+    lintChecks files(jar)
+}
 
-defaultTasks 'assemble'
+//defaultTasks 'assemble'
 
 task install(type: Copy) {
     from configurations.lintChecks
